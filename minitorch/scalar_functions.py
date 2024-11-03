@@ -117,8 +117,8 @@ class Inv(ScalarFunction):
 
     @staticmethod
     def forward(ctx: Context, a: float) -> float:
-       ctx.save_for_backward(a)
-       return operators.inv(a)
+        ctx.save_for_backward(a)
+        return operators.inv(a)
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
@@ -135,7 +135,7 @@ class Neg(ScalarFunction):
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
-        return -1. * d_output
+        return -1.0 * d_output
 
 
 class Sigmoid(ScalarFunction):
@@ -189,7 +189,7 @@ class LT(ScalarFunction):
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> Tuple[float, float]:
-        return 0.
+        return 0.0
 
 
 class EQ(ScalarFunction):
@@ -201,4 +201,4 @@ class EQ(ScalarFunction):
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> Tuple[float, float]:
-        return 0.
+        return 0.0

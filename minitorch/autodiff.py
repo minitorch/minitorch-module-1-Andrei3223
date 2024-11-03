@@ -63,7 +63,7 @@ def topological_sort(variable: Variable) -> Iterable[Variable]:
     Returns:
         Non-constant Variables in topological order starting from the right.
     """
-    
+
     used: set[int] = set()
     top_sort_list: List[Variable] = []
 
@@ -93,14 +93,14 @@ def backpropagate(variable: Variable, deriv: Any) -> None:
     """
     derivatives = {variable.unique_id: deriv}
     sorted_variables = topological_sort(variable)
-    
+
     for v in sorted_variables:
         d_output = derivatives.get(v.unique_id, 0)
 
         if v.is_leaf():
             v.accumulate_derivative(d_output)
             continue
-        
+
         for parent, parent_deriv in v.chain_rule(d_output):
             if parent.unique_id in derivatives:
                 derivatives[parent.unique_id] += parent_deriv

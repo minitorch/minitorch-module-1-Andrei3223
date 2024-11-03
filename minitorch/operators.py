@@ -32,12 +32,12 @@ def neg(x: float) -> float:
 
 def lt(x: float, y: float) -> float:
     """$f(x) =$ 1.0 if x is less than y else 0.0"""
-    return 1.0 if x < y else 0.
+    return 1.0 if x < y else 0.0
 
 
 def eq(x: float, y: float) -> float:
     "$f(x) =$ 1.0 if x is equal to y else 0.0"
-    return 1.0 if x == y else 0.
+    return 1.0 if x == y else 0.0
 
 
 def max(x: float, y: float) -> float:
@@ -47,7 +47,7 @@ def max(x: float, y: float) -> float:
 
 def is_close(x: float, y: float) -> float:
     "$f(x) = |x - y| < 1e-2$"
-    return 1.0 if abs(x - y) < 1e-2 else 0.
+    return 1.0 if abs(x - y) < 1e-2 else 0.0
 
 
 def sigmoid(x: float) -> float:
@@ -62,8 +62,9 @@ def sigmoid(x: float) -> float:
 
     for stability.
     """
-    return (1.0 / (1.0 + math.exp(-x))) if x >= 0 else (math.exp(x) / (1.0 + math.exp(x)))
-
+    return (
+        (1.0 / (1.0 + math.exp(-x))) if x >= 0 else (math.exp(x) / (1.0 + math.exp(x)))
+    )
 
 
 def relu(x: float) -> float:
@@ -95,12 +96,12 @@ def log_back(x: float, d: float) -> float:
 
 def inv(x: float) -> float:
     "$f(x) = 1/x$"
-    return 1. / x
+    return 1.0 / x
 
 
 def inv_back(x: float, d: float) -> float:
     r"If $f(x) = 1/x$ compute $d \times f'(x)$"
-    return -1. * d / (x * x)
+    return -1.0 * d / (x * x)
 
 
 def relu_back(x: float, d: float) -> float:
@@ -173,11 +174,13 @@ def reduce(
          $x_1 \ldots x_n$ and computes the reduction :math:`fn(x_3, fn(x_2,
          fn(x_1, x_0)))`
     """
+
     def rec_reduce(iterable: Iterable[float]):
         result = start
         for el in iterable:
             result = fn(el, result)
         return result
+
     return rec_reduce
 
 

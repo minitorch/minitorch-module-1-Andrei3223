@@ -110,11 +110,10 @@ def test_sigmoid(a: float) -> None:
     * It crosses 0 at 0.5
     * It is  strictly increasing.
     """
-    assert sigmoid(a) >= 0. and sigmoid(a) <= 1.
-    assert_close(1 - sigmoid(a), sigmoid(-a)) 
+    assert sigmoid(a) >= 0.0 and sigmoid(a) <= 1.0
+    assert_close(1 - sigmoid(a), sigmoid(-a))
     assert sigmoid(0) == 0.5
     assert sigmoid(a) <= sigmoid(a + EPS)
-
 
 
 @pytest.mark.task0_2

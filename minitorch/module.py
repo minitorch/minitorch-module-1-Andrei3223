@@ -29,10 +29,10 @@ class Module:
         m: Dict[str, Module] = self.__dict__["_modules"]
         return list(m.values())
 
-    def _train_helper(self, module: Module, value: bool):
-            module.training = value
-            for sub_module in module.modules():
-                sub_module._train_helper(sub_module, value)
+    def _train_helper(self, module: Module, value: bool) -> None:
+        module.training = value
+        for sub_module in module.modules():
+            sub_module._train_helper(sub_module, value)
 
     def train(self) -> None:
         """Set the mode of this module and all descendent modules to `train`."""
@@ -42,7 +42,7 @@ class Module:
         """Set the mode of this module and all descendent modules to `eval`."""
         self._train_helper(self, False)
 
-    def _params_helper(self, cur_name: str = ""):
+    def _params_helper(self, cur_name: str = "") -> Sequence[Tuple[str, Parameter]]:
         result = []
         for name, param in self._parameters.items():
             result.append((cur_name + name, param))
@@ -98,6 +98,7 @@ class Module:
         return None
 
     def __call__(self, *args: Any, **kwargs: Any) -> Any:
+        """Call"""
         return self.forward(*args, **kwargs)
 
     def __repr__(self) -> str:

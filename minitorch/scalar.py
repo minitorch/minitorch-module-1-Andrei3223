@@ -169,7 +169,7 @@ class Scalar:
         for input_variable, local_derivatives in zip(h.inputs, local_derivatives):
             if not input_variable.is_constant():
                 result.append((input_variable, local_derivatives))
-        
+
         return result
 
     def backward(self, d_output: Optional[float] = None) -> None:
