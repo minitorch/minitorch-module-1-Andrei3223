@@ -2,6 +2,7 @@
 Be sure you have minitorch installed in you Virtual Env.
 >>> pip install -Ue .
 """
+
 import random
 
 import minitorch
@@ -46,8 +47,9 @@ class Linear(minitorch.Module):
         for i, x in enumerate(inputs):
             for j in range(len(result)):
                 result[j] += self.weights[i][j].value * x
-        
+
         return result
+
 
 def default_log_fn(epoch, total_loss, correct, losses):
     print("Epoch ", epoch, " loss ", total_loss, "correct", correct)
